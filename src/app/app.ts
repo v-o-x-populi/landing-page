@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,37 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
-  private readonly deepLink = 'vox://open';
+  private readonly router = inject(Router);
+  private readonly deepLinkBase = 'vox://open';
 
   public ngOnInit(): void {
     if (typeof window == 'undefined' || typeof document == 'undefined') return;
+
+    const isElectron = !!(window as any).electron;
+    if (isElectron) {
+      const electronApi = (window as any).electron;
+      if (electronApi.onDeepLink)
+        electronApi.onDeepLink((url: string) => {
+          try {
+            const parsed = new URL(url);
+            const encoded = parsed.searchParams.get('path');
+            if (!encoded) return;
+            const path = decodeURIComponent(encoded);
+            this.router.navigateByUrl(path);
+          } catch {}
+        });
+
+      return;
+    }
+
     const params = new URLSearchParams(window.location.search);
-    const shouldOpen = params.get('notOpen') != 'true';
+    const shouldOpen = params.get('notOpen') !== 'true';
     if (!shouldOpen) return;
-    this.tryOpenApp(this.deepLink);
+
+    const currentPath = window.location.pathname + window.location.search + window.location.hash;
+
+    const encodedPath = encodeURIComponent(currentPath);
+    this.tryOpenApp(`${this.deepLinkBase}?path=${encodedPath}`);
   }
 
   private tryOpenApp(link: string): void {

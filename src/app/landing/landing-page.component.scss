@@ -186,6 +186,17 @@ main {
   margin-bottom: 1.5rem;
 }
 
+.hero__note {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.hero__note--security {
+  font-weight: 700;
+  color: var(--text);
+}
+
 .hero__logo {
   width: 88px;
   height: 88px;
@@ -293,9 +304,10 @@ main {
 
 .hero__qr {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
   gap: 1rem;
   align-items: stretch;
+  justify-content: center;
 }
 
 .qr-card {
@@ -309,6 +321,8 @@ main {
   flex-direction: column;
   gap: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  max-width: 340px;
+  margin: 0 auto;
 }
 
 .qr-card:hover {
@@ -343,6 +357,7 @@ main {
 
 .qr {
   width: 100%;
+  max-width: 260px;
   aspect-ratio: 1 / 1;
   border-radius: 18px;
   background: color-mix(in srgb, var(--bg) 80%, #fff);
@@ -351,11 +366,15 @@ main {
   color: var(--muted);
   font-weight: 800;
   border: 1px dashed color-mix(in srgb, var(--text) 15%, transparent);
+  margin: 0 auto;
+  padding: 0.75rem;
 }
 
 .qr img {
   width: 100%;
   height: 100%;
+  max-width: 220px;
+  max-height: 220px;
   object-fit: contain;
 }
 
@@ -487,6 +506,20 @@ main {
 
 .trust p {
   color: var(--muted);
+}
+
+.trust__list {
+  list-style: disc;
+  margin: 1rem auto 0;
+  padding: 0 1.2rem;
+  max-width: 720px;
+  text-align: left;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.trust__list li + li {
+  margin-top: 0.35rem;
 }
 
 .preview {

@@ -6,7 +6,7 @@
       </div>
       <div class="title">
         <span>Vox</span>
-        <small>votações seguras em tempo real</small>
+        <small>plataforma oficial de votação digital</small>
       </div>
     </div>
     <nav class="links">
@@ -14,7 +14,11 @@
       <a href="#how-it-works" (click)="scrollTo('how-it-works', $event)">Como funciona</a>
       <a href="#faq" (click)="scrollTo('faq', $event)">FAQ</a>
     </nav>
-    <button class="toggle" (click)="toggleTheme()" [attr.aria-label]="theme() === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'">
+    <button
+      class="toggle"
+      (click)="toggleTheme()"
+      [attr.aria-label]="theme() === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'"
+    >
       <i class="bi" [ngClass]="theme() === 'light' ? 'bi-moon-stars' : 'bi-sun-fill'"></i>
     </button>
   </header>
@@ -23,10 +27,13 @@
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="hero__content">
-        <h1>Votações seguras em tempo real</h1>
+        <h1>Vox: votação digital segura e em tempo real</h1>
         <p>
-          Crie eleições, gerencie sessões de votação, cadastre candidatos e acompanhe resultados ao
-          vivo com segurança e confiabilidade.
+          Construído em NestJS, MongoDB, Redis e Socket.IO. Crie eleições, urnas e candidatos,
+          sessões de votações e mais.
+        </p>
+        <p class="hero__note">
+          App Android e Windows para operação em campo e ambientes controlados.
         </p>
         <div class="hero__actions">
           @for (d of downloadLinks; track d.platform) {
@@ -35,9 +42,13 @@
           </a>
           }
         </div>
+        <p class="hero__note hero__note--security">
+          Pagamentos são processados direto no Abacate Pay com antifraude, sem guardar dados
+          sensíveis das transações no Vox.
+        </p>
       </div>
       <div class="hero__qr">
-        @for (d of downloadLinks; track d.platform) {
+        @for (d of qrLinks; track d.platform) {
         <div class="qr-card">
           <div class="qr-card__head">
             <span class="badge-os">{{ d.platform | uppercase }}</span>
@@ -57,10 +68,6 @@
 
     <!-- Features -->
     <section class="section muted" id="features">
-      <div class="section__header">
-        <h2>Recursos poderosos</h2>
-        <p>Tudo que você precisa para realizar votações seguras e eficientes</p>
-      </div>
       <div class="grid four">
         @for (feature of features; track feature.title) {
         <div class="card">
@@ -75,8 +82,8 @@
     <!-- Integration -->
     <section class="section" id="integrations">
       <div class="section__header">
-        <h2>Integração e confiança</h2>
-        <p>Infraestrutura robusta com as melhores tecnologias do mercado</p>
+        <h2>Stack e segurança que utilizada</h2>
+        <p>Mesma infraestrutura do projeto: NestJS, WebSockets, MongoDB, Redis e Abacate Pay.</p>
       </div>
       <div class="grid four narrow">
         @for (item of stack; track item.title) {
@@ -90,10 +97,12 @@
       <div class="trust">
         <div class="trust__badge"><i class="bi bi-shield-lock"></i></div>
         <h3>Segurança de nível empresarial</h3>
-        <p>
-          Dados e votações protegidos com criptografia, autenticação JWT e infraestrutura redundante
-          em nuvem.
-        </p>
+        <p>Criptografia, sessões assinadas e validação de integridade em cada voto.</p>
+        <ul class="trust__list">
+          <li>Pagamentos via Abacate Pay (PIX) com antifraude e webhooks assinados.</li>
+          <li>Redis + BullMQ para estabilidade de sessões e WebSockets, mesmo em alto volume.</li>
+          <li>Logs e auditoria por eleição, urna e voto para rastreabilidade total.</li>
+        </ul>
       </div>
     </section>
 
@@ -101,7 +110,7 @@
     <section class="section" id="how-it-works">
       <div class="section__header">
         <h2>Como funciona</h2>
-        <p>Processo simples e transparente do início ao fim</p>
+        <p>Instruções rápidas, iguais às do app e da API</p>
       </div>
       <div class="steps">
         @for (step of steps; let i = $index; track step.title) {
@@ -121,7 +130,7 @@
     <section class="section muted" id="faq">
       <div class="section__header">
         <h2>Perguntas frequentes</h2>
-        <p>Tire suas dúvidas sobre o Vox</p>
+        <p>Tire suas dúvidas sobre segurança, pagamentos e uso do Vox</p>
       </div>
       <div class="faq">
         @for (faq of faqs; track faq.question) {
@@ -141,8 +150,8 @@
         <div class="cta__icon"><i class="bi bi-download"></i></div>
         <h2>Comece a usar o Vox hoje</h2>
         <p>
-          Baixe agora e crie sua primeira eleição em minutos. Segurança, transparência e resultados
-          em tempo real.
+          Baixe, crie uma eleição e abra sua primeira sessão em minutos. Segurança, pagamentos
+          verificados e resultados ao vivo na mesma plataforma.
         </p>
         <div class="hero__actions">
           @for (d of downloadLinks; track d.platform) {

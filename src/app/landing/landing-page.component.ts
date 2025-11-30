@@ -37,97 +37,125 @@ export class LandingPageComponent implements OnInit {
   public downloadLinks: DownloadLink[] = [
     {
       platform: 'android',
-      label: 'Download Android',
-      subtitle: 'Escaneie para instalar no Android',
-      url: 'https://github.com/Joaopdiasventura/vox-files/releases/download/0.0.1/Vox.apk',
+      label: 'App Vox para Android',
+      subtitle: 'Votação e operação em campo com login seguro',
+      url: 'https://v-o-x.s3.sa-east-1.amazonaws.com/Vox.apk',
       type: 'Mobile',
     },
     {
       platform: 'windows',
-      label: 'Download Windows',
-      subtitle: 'Escaneie para instalar no Windows',
-      url: 'https://github.com/Joaopdiasventura/vox-files/releases/download/0.0.1/Vox.Setup.0.0.1.exe',
+      label: 'App Vox para Windows',
+      subtitle: 'Painel para criar eleições e acompanhar dashboards',
+      url: 'https://v-o-x.s3.sa-east-1.amazonaws.com/Vox+Setup+0.0.1.exe',
       type: 'Desktop',
     },
   ];
+  public qrLinks: DownloadLink[] = this.downloadLinks.filter((d) => d.platform === 'android');
 
   public features: Card[] = [
     {
-      icon: 'file-text',
-      title: 'Crie eleições',
-      description:
-        'Configure eleições personalizadas com múltiplas opções e parâmetros de segurança.',
+      icon: 'diagram-3',
+      title: 'Eleições completas',
+      description: 'Cadastre cargos, candidatos, sessões e urnas com regras claras e auditáveis.',
     },
     {
-      icon: 'clock-history',
-      title: 'Gerencie sessões',
-      description: 'Controle sessões de votação com abertura e fechamento programados.',
+      icon: 'broadcast-pin',
+      title: 'Tempo real',
+      description: 'Socket.IO + Redis para acompanhar contagem e dashboards ao vivo, sem atrasos.',
     },
     {
       icon: 'shield-check',
-      title: 'Autorize e acompanhe votos',
-      description: 'Autorização robusta com verificação de integridade a cada voto.',
+      title: 'Segurança ponta a ponta',
+      description: 'Autenticação JWT, criptografia e trilha de auditoria para cada voto e sessão.',
     },
     {
-      icon: 'activity',
-      title: 'Resultados ao vivo',
-      description: 'Acompanhamento em tempo real com WebSockets e atualização instantânea.',
+      icon: 'credit-card-2-front',
+      title: 'Pagamentos verificados',
+      description:
+        'Pedidos, PIX e cartão via Abacate Pay com webhooks assinados e reconciliação automática.',
     },
   ];
 
   public stack: Card[] = [
-    { icon: 'shield-lock', title: 'JWT', description: 'Autenticação segura' },
-    { icon: 'lightning-charge', title: 'Redis', description: 'Cache ultrarrápido' },
-    { icon: 'database', title: 'MongoDB', description: 'Banco escalável' },
+    { icon: 'cpu', title: 'NestJS + Node', description: 'API modular e gateways WebSocket' },
+    { icon: 'database', title: 'MongoDB + Mongoose', description: 'Persistência escalável' },
+    { icon: 'lightning-charge', title: 'Redis + BullMQ', description: 'Cache, filas e sessões' },
+    { icon: 'wifi', title: 'Socket.IO', description: 'Atualizações em tempo real' },
+    { icon: 'shield-lock', title: 'JWT + Criptografia', description: 'Sessões assinadas' },
+    { icon: 'credit-card', title: 'Abacate Pay', description: 'Pagamentos com antifraude' },
   ];
 
   public steps: Card[] = [
-    { icon: 'file-text', title: 'Criar eleição', description: 'Defina regras e cargos' },
-    { icon: 'person-plus', title: 'Cadastrar candidatos', description: 'Adicione opções de voto' },
-    { icon: 'play-fill', title: 'Abrir sessão', description: 'Inicie no horário programado' },
     {
-      icon: 'check-circle',
-      title: 'Registrar votos',
-      description: 'Eleitores votam com segurança',
+      icon: 'phone',
+      title: 'Instalar e entrar',
+      description: 'Baixe o app Android ou Windows e faça login ou crie uma conta com seu e-mail.',
     },
     {
-      icon: 'bar-chart-line',
+      icon: 'person-badge',
+      title: 'Completar dados',
+      description: 'Valide o e-mail e e "Minha conta" informe seu CPF/CNPJ.',
+    },
+    {
+      icon: 'cart-check',
+      title: 'Comprar votos',
+      description: 'Na área Pedidos escolha quantidade, pague e libere votos.',
+    },
+    {
+      icon: 'file-text',
+      title: 'Criar eleição',
+      description: 'Cadastre eleições, candidatos e sessões com horários estabelecidos.',
+    },
+    {
+      icon: 'play-fill',
+      title: 'Abrir sessão',
+      description: 'Crie uma urna a partir de uma sessão e autorize ela em outro dispositivo',
+    },
+    {
+      icon: 'activity',
       title: 'Acompanhar em tempo real',
-      description: 'Resultados instantâneos sempre disponíveis.',
+      description: 'Veja resultados em tempo real',
     },
   ];
 
   public faqs: Faq[] = [
     {
-      question: 'Como garantir a segurança das votações?',
+      question: 'Como o Vox protege votos e dados?',
       answer:
-        'Usamos criptografia ponta a ponta e autenticação via tokens. Cada voto é verificado e registrado de forma íntegra.',
+        'Autenticação JWT, senhas com salt e comunicação sob HTTPS. Cada voto gera trilha de auditoria e validação de integridade.',
     },
     {
-      question: 'Posso acompanhar os resultados em tempo real?',
+      question: 'Os pagamentos são seguros?',
       answer:
-        'Sim. O Vox transmite resultados instantaneamente. Cada voto aparece no dashboard em tempo real.',
+        'Os pagamentos passam pelo Abacate Pay (PIX e cartão) com antifraude. Validamos webhooks assinados e não armazenamos dados sensíveis.',
     },
     {
-      question: 'Quantas eleições posso criar?',
+      question: 'Quais plataformas são suportadas?',
       answer:
-        'Sem limite. Crie várias eleições, gerencie sessões simultâneas e cadastre candidatos ilimitados.',
+        'Android para operação em campo, Windows para gestão e versão web integrada à API NestJS.',
     },
     {
-      question: 'Para quais plataformas o app está disponível?',
-      answer: 'Android, Windows e versão web.',
+      question: 'Preciso informar CPF/CNPJ para comprar votos?',
+      answer:
+        'Sim. Na área Minha Conta informe CPF ou CNPJ para liberar pedidos de compra de votos e gerar cobranças no Abacate Pay.',
     },
     {
-      question: 'Como funciona o sistema de pagamentos?',
+      question: 'O que preciso para abrir uma sessão?',
       answer:
-        'Integração com Mercado Pago, transações criptografadas e conformidade com padrões de segurança.',
+        'Criar a eleição, cadastrar candidatos, definir horários e (opcional) conectar o Abacate Pay.',
+    },
+    {
+      question: 'Posso integrar com minha infraestrutura?',
+      answer:
+        'Sim. A API NestJS expõe REST e WebSockets. Basta configurar as URLs e tokens no .env.',
     },
   ];
 
   public stats = [
-    { value: '100%', label: 'Seguro e confiável' },
-    { value: 'Real-time', label: 'Resultados instantâneos' },
-    { value: '24/7', label: 'Suporte sempre disponível' },
+    { value: 'JWT + HTTPS', label: 'Sessões assinadas e comunicação cifrada' },
+    { value: 'Socket.IO', label: 'Atualizações ao vivo em urnas e dashboards' },
+    { value: 'Abacate Pay', label: 'Pagamentos auditados com antifraude' },
+    { value: 'Mongo + Redis', label: 'Infra pronta para alto volume' },
   ];
 
   public scrollTo(id: string, event?: Event): void {
@@ -145,7 +173,7 @@ export class LandingPageComponent implements OnInit {
       const initial = datasetTheme ?? (this.prefersDark.matches ? 'dark' : 'light');
       this.applyTheme(initial);
       this.prefersDark.addEventListener('change', (e) =>
-        this.applyTheme(e.matches ? 'dark' : 'light'),
+        this.applyTheme(e.matches ? 'dark' : 'light')
       );
     } else {
       this.applyTheme('light');
