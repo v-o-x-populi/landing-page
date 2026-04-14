@@ -39,14 +39,14 @@ export class LandingPageComponent implements OnInit {
       platform: 'android',
       label: 'App Vox para Android',
       subtitle: 'Votação e operação em campo com login seguro',
-      url: 'https://v-o-x.s3.sa-east-1.amazonaws.com/Vox.apk',
+      url: 'https://github.com/v-o-x-populi/landing-page/releases/download/v0.0.1/Vox.apk',
       type: 'Mobile',
     },
     {
       platform: 'windows',
       label: 'App Vox para Windows',
       subtitle: 'Painel para criar eleições e acompanhar dashboards',
-      url: 'https://v-o-x.s3.sa-east-1.amazonaws.com/Vox+Setup+0.0.1.exe',
+      url: 'https://github.com/v-o-x-populi/landing-page/releases/download/v0.0.1/Vox+Setup+0.0.1.exe',
       type: 'Desktop',
     },
   ];
