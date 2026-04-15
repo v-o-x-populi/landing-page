@@ -46,7 +46,7 @@ export class LandingPageComponent implements OnInit {
       platform: 'windows',
       label: 'App Vox para Windows',
       subtitle: 'Painel para criar eleições e acompanhar dashboards',
-      url: 'https://github.com/v-o-x-populi/landing-page/releases/download/v0.0.1/Vox+Setup+0.0.1.exe',
+      url: 'https://github.com/v-o-x-populi/landing-page/releases/download/v0.0.1/Vox.Setup.0.0.1.exe',
       type: 'Desktop',
     },
   ];
